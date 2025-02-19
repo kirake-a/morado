@@ -34,3 +34,4 @@ Thumbs.db
 # Archivos de cobertura de pruebas
 jacoco.exec
 coverage/
+target/classes/com/mantenimiento/morado/Main.class
