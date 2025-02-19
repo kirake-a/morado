@@ -28,16 +28,23 @@ public class DirectoryScanner {
      * @author Rubén Alvarado
      */
     public List<String> getJavaFiles() {
-        try (Stream<Path> paths = Files.walk(Paths.get(directoryPath))) {
-            return paths
-                    .filter(Files::isRegularFile)
-                    .map(Path::toString)
-                    .filter(string -> string.endsWith(".java"))
-                    .collect(Collectors.toList());
+        try (Stream<Path> paths = getFilePaths()) {
+            return filterJavaFiles(paths);
         } catch (IOException ioException) {
             System.err.println("Error while trying to read directory path: " + ioException.getMessage());
         }
+        return List.of(); //it is an empty list
+    }
 
-        return List.of();
+    private Stream<Path> getFilePaths () throws IOException{
+        return Files.walk(Paths.get(directoryPath))
+            .filter(Files::isRegularFile);
+    }
+
+    private List<String> filterJavaFiles(Stream<Path> paths){
+        return paths
+                .map(Path::toString)
+                .filter(string -> string.endsWith(".java"))
+                .collect(Collectors.toList());
     }
 }
