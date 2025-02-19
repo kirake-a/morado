@@ -8,8 +8,8 @@ import java.nio.file.Paths;
 import java.nio.file.Path;
 import java.util.List;
 
-public class SourceFileAnalyzer {
-    public static SourceFile analyze(String filePath) {
+public class LOCAnalizer {
+    public static LOCCountResult countLOC(String filePath) {
         int physicalLOC = 0;
         int logicalLOC = 0;
         boolean inBLockComment = false;
@@ -45,10 +45,35 @@ public class SourceFileAnalyzer {
             System.err.println("Error while processing: " + ioException.getMessage());
         }
 
+        return new LOCCountResult(logicalLOC, physicalLOC);
+    }
+
+    public static SourceFile createSourceFile(String filePath){
+        LOCCountResult countResult = countLOC(filePath);
+        Path path = Paths.get(filePath);
         return new SourceFile(
                 path.getFileName().toString(),
-                logicalLOC,
-                physicalLOC
+                countResult.getLogicalLOC(),
+                countResult.getPhysicalLOC()
         );
     }
+
+    public static class LOCCountResult {
+        private final int logicalLOC;
+        private final int physicalLOC;
+
+        public LOCCountResult(int logicalLOC, int physicalLOC) {
+            this.logicalLOC = logicalLOC;
+            this.physicalLOC = physicalLOC;
+        }
+
+        public int getLogicalLOC() {
+            return logicalLOC;
+        }
+
+        public int getPhysicalLOC() {
+            return physicalLOC;
+        }
+    }
 }
+

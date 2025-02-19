@@ -1,1 +1,6 @@
+com\mantenimiento\morado\code\counter\SourceFileAnalyzer$LOCCountResult.class
+com\mantenimiento\morado\code\counter\DirectoryScanner.class
+com\mantenimiento\morado\code\counter\LOCAnalyzer.class
+com\mantenimiento\morado\code\counter\SourceFileAnalyzer.class
 com\mantenimiento\morado\Main.class
+com\mantenimiento\morado\code\model\SourceFile.class
