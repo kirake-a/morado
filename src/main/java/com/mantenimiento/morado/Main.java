@@ -1,6 +1,6 @@
 package com.mantenimiento.morado;
 
-import com.mantenimiento.morado.code.counter.LOCAnalyzer;
+import com.mantenimiento.morado.code.counter.SourceFileAnalizer;
 
 public class Main {
     public static void main(String[] args) {
@@ -9,7 +9,7 @@ public class Main {
             return;
         }
 
-        LOCAnalyzer analyzer = new LOCAnalyzer(args[0]);
+        SourceFileAnalizer analyzer = new SourceFileAnalizer(args[0]);
         analyzer.analyzePath();
     }
 }
