@@ -4,7 +4,7 @@ import com.mantenimiento.morado.code.model.SourceFile;
 
 import java.util.List;
 
-public class SourceFileAnalizer {
+public class SourceFileAnalyzer {
     private final String directoryPath;
 
     /**
@@ -12,7 +12,7 @@ public class SourceFileAnalizer {
      *
      * @param directoryPath The path to the directory containing Java source files.
      */
-    public SourceFileAnalizer(String directoryPath) {
+    public SourceFileAnalyzer(String directoryPath) {
         this.directoryPath = directoryPath;
     }
 
@@ -27,7 +27,7 @@ public class SourceFileAnalizer {
         printHeader();
 
         for (String filePath : javaFilesPaths) {
-            SourceFile file = LOCAnalizer.createSourceFile(filePath);
+            SourceFile file = LOCAnalyzer.createSourceFile(filePath);
             printDetails(file);
         }
     }

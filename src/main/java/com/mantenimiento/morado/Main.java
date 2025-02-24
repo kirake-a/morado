@@ -1,6 +1,6 @@
 package com.mantenimiento.morado;
 
-import com.mantenimiento.morado.code.counter.SourceFileAnalizer;
+import com.mantenimiento.morado.code.counter.SourceFileAnalyzer;
 
 public class Main {
     public static void main(String[] args) {
@@ -9,7 +9,7 @@ public class Main {
             return;
         }
 
-        SourceFileAnalizer analyzer = new SourceFileAnalizer(args[0]);
+        SourceFileAnalyzer analyzer = new SourceFileAnalyzer(args[0]);
         analyzer.analyzePath();
     }
 }

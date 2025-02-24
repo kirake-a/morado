@@ -10,8 +10,9 @@ public class DirectoryScanner {
     private final String directoryPath;
 
     /**
+     * Constructs a new DirectoryScanner with the specified directory path
      *
-     * @param directoryPath
+     * @param directoryPath The path to the directory containing Java source files.
      */
     public DirectoryScanner(String directoryPath) {
         this.directoryPath = directoryPath;
