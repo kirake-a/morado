@@ -60,11 +60,11 @@ public class SourceFileAnalyzer {
      */
     private void printDetails(SourceFile file) {
         System.out.printf(
-                "%-20s %-15d %-15d %-10s%n",
-                file.filename(),
-                file.logicalLOC(),
-                file.physicalLOC(),
-                file.status()
+            "%-20s %-15d %-15d %-10s%n",
+            file.filename(),
+            file.logicalLOC(),
+            file.physicalLOC(),
+            file.status()
         );
     }
 
@@ -75,7 +75,7 @@ public class SourceFileAnalyzer {
             file.getFileName().toString(),
             0,
             0,
-                Constants.JAVA_FILE_STATUS_ERROR
+            Constants.JAVA_FILE_STATUS_ERROR
         );
     }
 
