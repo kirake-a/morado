@@ -43,7 +43,7 @@ public class SyntaxAnalyzer {
 
     private static boolean hasMultiInstance(List<String> fileLines) {
         Pattern pattern = Pattern.compile(Regex.MULTI_INSTANCE_REGEX);
-        boolean hasMultiInstance = fileLines.stream().anyMatch(line -> pattern.matcher(line).matches());
-        return hasMultiInstance;  
+        boolean multiInstanceFound = fileLines.stream().anyMatch(line -> pattern.matcher(line).matches());
+        return multiInstanceFound;  
     }
 }
