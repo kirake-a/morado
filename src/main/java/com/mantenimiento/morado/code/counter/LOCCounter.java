@@ -9,31 +9,26 @@ import java.nio.file.Path;
 import java.util.List;
 
 public class LOCCounter {
+    private static int logicalLOC = 0;
+    private static int physicalLOC = 0;
 
     public static SourceFile countLOC(String filePath) {
         Path path = Paths.get(filePath);
 
         try {
             List<String> codeLines = SourceFile.getAllLinesFromFile(filePath);
-            int physicalLOC = countPhysicalLOC(codeLines);
-            int logicalLOC = countLogicalLOC(codeLines);
 
-            return new SourceFile(
-                    path.getFileName().toString(),
-                    logicalLOC,
-                    physicalLOC,
-                    Constants.JAVA_FILE_STATUS_OK
-            );
-
+            setLogicalLOC(countLogicalLOC(codeLines));
+            setPhysicalLOC(countPhysicalLOC(codeLines));
         } catch (IOException ioException) {
             System.err.println("Error while processing file: " + ioException.getMessage());
         }
 
         return new SourceFile(
-                path.getFileName().toString(),
-                0,
-                0,
-                Constants.JAVA_FILE_STATUS_ERROR
+            path.getFileName().toString(),
+            logicalLOC,
+            physicalLOC,
+            Constants.JAVA_FILE_STATUS_OK
         );
     }
 
@@ -105,5 +100,13 @@ public class LOCCounter {
 
     private static boolean isLogicalLine(String line) {
         return line.endsWith(";") || line.endsWith("{");
+    }
+
+    private static void setLogicalLOC(int _logicalLOC) {
+        logicalLOC = _logicalLOC;
+    }
+
+    private static void setPhysicalLOC(int _physicalLOC) {
+        physicalLOC = _physicalLOC;
     }
 }
