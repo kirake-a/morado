@@ -1,28 +1,16 @@
 package com.mantenimiento.morado.code.counter;
 
 import com.mantenimiento.morado.code.model.SourceFile;
-import com.mantenimiento.morado.code.model.LOCCountResult;
+import com.mantenimiento.morado.util.Constants;
 
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.Path;
 import java.util.List;
 
-public class LOCAnalyzer {
+public class LOCCounter {
 
-    public static SourceFile createSourceFile(String filePath){
-        LOCCountResult countResult = countLOC(filePath);
-        Path path = Paths.get(filePath);
-
-        return new SourceFile(
-                path.getFileName().toString(),
-                countResult.logicalLOC(),
-                countResult.physicalLOC()
-        );
-    }
-
-    private static LOCCountResult countLOC(String filePath) {
+    public static SourceFile countLOC(String filePath) {
         int physicalLOC = 0;
         int logicalLOC = 0;
         boolean inBLockComment = false;
@@ -30,7 +18,7 @@ public class LOCAnalyzer {
         Path path = Paths.get(filePath);
 
         try {
-            List<String> lines = Files.readAllLines(path);
+            List<String> lines = SourceFile.getAllLinesFromFile(filePath);
 
             for (String line : lines) {
                 String trimmed = line.trim();
@@ -59,10 +47,15 @@ public class LOCAnalyzer {
             }
 
         } catch (IOException ioException) {
-            System.err.println("Error while processing: " + ioException.getMessage());
+            System.err.println("Error while processing file: " + ioException.getMessage());
         }
 
-        return new LOCCountResult(logicalLOC, physicalLOC);
+        return new SourceFile(
+                path.getFileName().toString(),
+                logicalLOC,
+                physicalLOC,
+                Constants.JAVA_FILE_STATUS_OK
+        );
     }
 
     /**

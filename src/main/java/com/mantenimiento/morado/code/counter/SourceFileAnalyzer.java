@@ -1,14 +1,18 @@
 package com.mantenimiento.morado.code.counter;
 
 import com.mantenimiento.morado.code.model.SourceFile;
+import com.mantenimiento.morado.code.syntax.SyntaxAnalyzer;
+import com.mantenimiento.morado.util.Constants;
 
 import java.util.List;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class SourceFileAnalyzer {
     private final String directoryPath;
 
     /**
-     * Constructs a new LOCAnalyzer with the specified directory path
+     * Constructs a new SourceFileAnalyzer with the specified directory path
      *
      * @param directoryPath The path to the directory containing Java source files.
      */
@@ -27,7 +31,13 @@ public class SourceFileAnalyzer {
         printHeader();
 
         for (String filePath : javaFilesPaths) {
-            SourceFile file = LOCAnalyzer.createSourceFile(filePath);
+            SourceFile file;
+            if (SyntaxAnalyzer.isJavaFileWellWritten(filePath)) {
+                file = LOCCounter.countLOC(filePath);
+            } else {
+                file = getBadSourceFile(filePath);
+            }
+
             printDetails(file);
         }
     }
@@ -36,8 +46,8 @@ public class SourceFileAnalyzer {
      * Prints the table header for displaying the LOC analysis results.
      */
     private void printHeader() {
-        System.out.printf("%-20s %-15s %-15s%n", "Program", "Logical LOC", "Physical LOC");
-        System.out.println("----------------------------------------------------");
+        System.out.printf("%-20s %-15s %-15s %-10s%n", "Program", "Logical LOC", "Physical LOC", "Status");
+        System.out.println("-------------------------------------------------------------");
     }
 
     /**
@@ -50,10 +60,22 @@ public class SourceFileAnalyzer {
      */
     private void printDetails(SourceFile file) {
         System.out.printf(
-                "%-20s %-15d %-15d%n",
+                "%-20s %-15d %-15d %-10s%n",
                 file.filename(),
                 file.logicalLOC(),
-                file.physicalLOC()
+                file.physicalLOC(),
+                file.status()
+        );
+    }
+
+    private SourceFile getBadSourceFile(String filepath) {
+        Path file = Paths.get(filepath);
+
+        return new SourceFile(
+            file.getFileName().toString(),
+            0,
+            0,
+                Constants.JAVA_FILE_STATUS_ERROR
         );
     }
 

@@ -34,15 +34,15 @@ public class DirectoryScanner {
         } catch (IOException ioException) {
             System.err.println("Error while trying to read directory path: " + ioException.getMessage());
         }
-        return List.of(); //it is an empty list
+        return List.of();
     }
 
-    private Stream<Path> getFilePaths () throws IOException{
+    private Stream<Path> getFilePaths () throws IOException {
         return Files.walk(Paths.get(directoryPath))
             .filter(Files::isRegularFile);
     }
 
-    private List<String> filterJavaFiles(Stream<Path> paths){
+    private List<String> filterJavaFiles(Stream<Path> paths) {
         return paths
                 .map(Path::toString)
                 .filter(string -> string.endsWith(".java"))
