@@ -18,9 +18,9 @@ public class LOCCounter {
         Path path = Paths.get(filePath);
 
         try {
-            List<String> lines = SourceFile.getAllLinesFromFile(filePath);
+            List<String> codeLines = SourceFile.getAllLinesFromFile(filePath);
 
-            for (String line : lines) {
+            for (String line : codeLines) {
                 String trimmed = line.trim();
 
                 if (inBLockComment) {
