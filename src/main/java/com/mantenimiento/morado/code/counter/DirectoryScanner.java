@@ -6,6 +6,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * The {@code DirectoryScanner} class is responsible for scanning a given directory and its
+ * subdirectories to retrieve Java source files.
+ *
+ * @author Rubén Alvarado
+ * @version 1.0.0
+ */
 public class DirectoryScanner {
     private final String directoryPath;
 
@@ -37,11 +44,26 @@ public class DirectoryScanner {
         return List.of();
     }
 
+    /**
+     * Retrieves a stream of file paths from the directory and its subdirectories.
+     * Only regular files (non-directories) are included.
+     *
+     * @return A {@code Stream<Path>} containing paths of all regular files found in the
+     * directory.
+     * @throws IOException If an I/O error occurs while accessing the file system
+     */
     private Stream<Path> getFilePaths () throws IOException {
         return Files.walk(Paths.get(directoryPath))
             .filter(Files::isRegularFile);
     }
 
+    /**
+     * Filters a stream of file paths to include only Java source files.
+     * A Java source file is determined by a filename that ends with ".java".
+     *
+     * @param paths A {@code Stream<Path>} containing file paths to be filtered
+     * @return A {@code List<String>} of absolute paths as strings forfiles ending with ".java".
+     */
     private List<String> filterJavaFiles(Stream<Path> paths) {
         return paths
                 .map(Path::toString)
