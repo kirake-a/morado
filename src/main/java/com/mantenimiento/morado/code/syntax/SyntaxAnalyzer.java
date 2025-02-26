@@ -43,13 +43,13 @@ public class SyntaxAnalyzer {
     public static boolean isJavaFileWellWritten(String filepath) {
 
         try {
-            List<String> lines = SourceFile.getAllLinesFromFile(filepath);
+            List<String> codeLines = SourceFile.getAllLinesFromFile(filepath);
 
-            if (hasMultiInstance(lines)) {
+            if (hasMultiInstance(codeLines)) {
                 return false;
             }
 
-            for (String line : lines) {
+            for (String line : codeLines) {
                 String trimmedLine = line.trim();
 
                 if (trimmedLine.startsWith("{")) {
