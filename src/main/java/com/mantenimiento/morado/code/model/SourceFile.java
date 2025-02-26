@@ -26,7 +26,7 @@ public record SourceFile(String filename, int logicalLOC, int physicalLOC, Strin
     /**
      * Reads all lines from the specified file.
      *
-     * <p>This method uses {@link java.nio.file.Files#readAllLines(java.nio.file.Path)}
+     * <p>This method uses {@link java.nio.file.Files#readAllLines(java.nio.file.Path)}.
      * to read the file content and return it as a list of strings.</p>
      *
      * @param filepath the path to the file

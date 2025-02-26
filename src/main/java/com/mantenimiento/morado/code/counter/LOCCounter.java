@@ -33,7 +33,7 @@ public class LOCCounter {
      *
      * @param filePath The path of the Java source file to be analyzed.
      * @return A {@code SourceFile} object containing the file's name, logical LOC, physical LOC,
-     * and the Java file status constant from {@link Constants}
+     * and the Java file status constant from {@link Constants}.
      */
     public static SourceFile countLOC(String filePath) {
         Path path = Paths.get(filePath);
@@ -128,7 +128,7 @@ public class LOCCounter {
      * Checks whether the given line marks the end of a block comment.
      *
       * @param line The trimmed line of code.
-     * @return {@code true} if the line ends with {@code * /}, otherwise {@code false}
+     * @return {@code true} if the line ends with {@code * /}, otherwise {@code false}.
      */
     private static boolean endsBlockComment(String line) {
         return line.endsWith("*/");
@@ -138,7 +138,7 @@ public class LOCCounter {
      * Checks whether the given line marks the start of a block comment.
      *
      * @param line The trimed line of code.
-     * @return {@code true} if the line starts with {@code / *}, otherwise {@code false}
+     * @return {@code true} if the line starts with {@code / *}, otherwise {@code false}.
      */
     private static boolean startsBlockComment(String line) {
         return line.startsWith("/*");
@@ -149,7 +149,7 @@ public class LOCCounter {
      * Ignorable lines include empty lines and lines that start with single-line comment markers.
      *
      * @param line the trimmed line of code
-     * @return {@code true} if the line is empty, starts with "//", or starts with "*", otherwise {@code false}
+     * @return {@code true} if the line is empty, starts with "//", or starts with "*", otherwise {@code false}.
      */
     private static boolean isIgnorableLine(String line) {
         return line.isEmpty() || line.startsWith("//") || line.startsWith("*");
@@ -160,7 +160,7 @@ public class LOCCounter {
      * A logical line is defined as one that ends with a semicolon or an opening brace.
      *
      * @param line the trimmed line of code
-     * @return {@code true} if the line ends with ";" or "{", otherwise {@code false}
+     * @return {@code true} if the line ends with ";" or "{", otherwise {@code false}.
      */
     private static boolean isLogicalLine(String line) {
         return line.endsWith(";") || line.endsWith("{");
