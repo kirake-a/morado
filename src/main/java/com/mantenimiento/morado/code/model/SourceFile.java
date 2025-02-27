@@ -10,7 +10,8 @@ import java.util.List;
  * and a status indicating its state.
  * <p>
  * This record is used to encapsulate basic information about a Java source file.
- * It provides a static method to read all lines from a file.</p>
+ * It provides a static method to read all lines from a file.
+ * </p>
  *
  * @author Ruben Alvarado
  * @version 1.0.0

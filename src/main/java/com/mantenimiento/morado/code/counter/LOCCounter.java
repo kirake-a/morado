@@ -1,24 +1,26 @@
 package com.mantenimiento.morado.code.counter;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
+
 import com.mantenimiento.morado.code.model.SourceFile;
 import com.mantenimiento.morado.util.Constants;
-
-import java.io.IOException;
-import java.nio.file.Paths;
-import java.nio.file.Path;
-import java.util.List;
 
 /**
  * The {@code LOCCounter} class provides functionality for counting the
  * physical and logical lines of code (LOC) in a Java source file.
  *
- * <p>Physical LOC counts non-empty lines of code excluding ignorable lines such as blank lines
+ * <p>
+ * Physical LOC counts non-empty lines of code excluding ignorable lines such as blank lines
  * or comments, while logical LOC counts statements (lines ending with a semicolon or an opening brace)
  * excluding comments and ignorable lines.
- *
- * <p>This class uses helper methods to determine if a line is part of a block comment,
+ * </p>
+ * <p>
+ * This class uses helper methods to determine if a line is part of a block comment,
  * should be ignored, or qualifies as a logical line.
- *
+ * </p>
  * @author Rubén Alvarado
  * @author Reynaldo Couoh
  * @version 1.0.0
