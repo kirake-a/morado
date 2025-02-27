@@ -1,7 +1,9 @@
 package com.mantenimiento.morado.code.counter;
 
 import java.io.IOException;
-import java.nio.file.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -33,7 +35,6 @@ public class DirectoryScanner {
      * @return A list of strings containing the absolute paths of all Java files found in the directory.
      *         If an error occurs while accessing the directory, an empty list is returned.
      *
-     * @author Rubén Alvarado
      */
     public List<String> getJavaFiles() {
         try (Stream<Path> paths = getFilePaths()) {

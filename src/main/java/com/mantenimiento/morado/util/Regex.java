@@ -16,10 +16,12 @@ public class Regex {
      * <p>
      * This pattern matches lines where multiple variables are declared and initialized on the same line,
      * separated by commas. For example:
+     * </p>
      * <pre>
      * int a = 10, b = 20, c = 30;
      * String x = "hello", y = "world";
      * </pre>
+     * <p>
      * These patterns are typically discouraged in certain coding standards for better readability.
      * </p>
      */
