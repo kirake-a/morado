@@ -165,7 +165,7 @@ public class LOCCounter {
      * @return {@code true} if the line ends with ";" or "{", otherwise {@code false}.
      */
     private static boolean isLogicalLine(String line) {
-        return line.endsWith(";") || line.endsWith("{");
+        return line.matches(".*\\b(class|interface|if|while|switch|for|try|do|public|private|protected|static)\\b.*\\{\\s*$");
     }
 
     /**
